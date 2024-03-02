@@ -1,13 +1,23 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
+import Foot from './components/Foot.vue'
+import Header from './components/Header.vue'
 import Opening from './components/Opening.vue'
+import About from './components/About.vue'
+import Menu from './components/Menu.vue'
+import Events from './components/Events.vue'
 </script>
 
 <template>
-  <main>
-      <Opening/>
-  </main>
+    <main>
+        <Header/>
+        <About/>
+        <Opening/>
+        <Menu/>
+        <Events/>
+        <Foot/>
+    </main>
 </template>
 
 <style scoped>
