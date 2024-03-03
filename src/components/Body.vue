@@ -31,7 +31,7 @@ export default {
     },
     mounted() {
         axios
-          .get('https://script.google.com/macros/s/AKfycbzGBasuxo90wBq77NUkCVkX4VVq_DZPlwbNdVD4a7iRm8M2eCt0Y-wyw_78583OMCM/exec')
+          .get('https://script.google.com/macros/s/AKfycbwEYDUYUdJNskqIdQHuDuwrt-YdWketDHXGClNDJbXYyCnwkmcfyKlJ2m_5eNaH_Ohw/exec')
           .then(
               response => {
                   this.dashboard = response["data"]
@@ -49,7 +49,7 @@ export default {
             <Header/>
             <About/>
             <Opening :dashboard="this.dashboard"/>
-            <Menu/>
+            <Menu :dashboard="this.dashboard"/>
             <Events/>
             <Foot/>
         </div>
