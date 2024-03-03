@@ -1,4 +1,7 @@
-<script setup>
+<script>
+    export default {
+        props: ['dashboard']
+    }
 </script>
 
 <template>
@@ -6,34 +9,11 @@
     <div class="container">
         <div>
             <h2> Horaires </h2>
-            <table>
-                <tr>
-                    <td class="day">Lundi</td>
-                    <td>18:00 - 02:00</td>
-                </tr>
-                <tr>
-                    <td class="day">Mardi</td>
-                    <td>18:00 - 02:00</td>
-                </tr>
-                <tr>
-                    <td class="day">Mercredi</td>
-                    <td>18:00 - 02:00</td>
-                </tr>
-                <tr>
-                    <td class="day">Jeudi</td>
-                    <td>18:00 - 02:00</td>
-                </tr>
-                <tr>
-                    <td class="day">Vendredi</td>
-                    <td>18:00 - 02:00</td>
-                </tr>
-                <tr>
-                    <td class="day">Samedi</td>
-                    <td>18:00 - 02:00</td>
-                </tr>
-                <tr>
-                    <td class="day">Dimanche</td>
-                    <td>18:00 - 02:00</td>
+            <p v-if="dashboard"><strong>{{ dashboard.opening.message }}</strong></p>
+            <table v-if="dashboard">
+                <tr v-for="time in dashboard.opening.times">
+                    <td class="day">{{ time[0] }}</td>
+                    <td>{{ time[1] }} - {{ time[2] }}</td>
                 </tr>
             </table>
         </div>
