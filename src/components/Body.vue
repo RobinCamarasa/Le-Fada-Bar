@@ -8,6 +8,7 @@ import Opening from './Opening.vue'
 import About from './About.vue'
 import Menu from './Menu.vue'
 import Events from './Events.vue'
+import LogoLink from './LogoLink.vue'
 
 export default {
     data() {
@@ -27,7 +28,8 @@ export default {
         Opening,
         About,
         Menu,
-        Events
+        Events,
+        LogoLink
     },
     mounted() {
         axios
@@ -57,8 +59,8 @@ export default {
             <div>
                 <h2>Le Fada</h2>
                 <div>Bar - restaurant</div>
-                <div>64 Rue Jean-Jacques Rousseau, 75001 Paris, France</div>
-                <div><a href="telto:+33612345678">+33 6 12 34 56 78</a></div>
+                <LogoLink displayed="64 Rue Jean-Jacques Rousseau, 75001 Paris, France" address="https://maps.app.goo.gl/du8wNHpY7ujomvC36" logo="maps"/>
+                <LogoLink displayed="+33 6 12 34 56 78" address="telto:+33612345678" logo="phone"/>
             </div>
         </div>
     </main>

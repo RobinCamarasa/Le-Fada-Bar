@@ -1,5 +1,7 @@
 <script>
+    import LogoLink from './LogoLink.vue'
     export default {
+        components: {LogoLink},
         props: ['dashboard']
     }
 </script>
@@ -19,15 +21,13 @@
         </div>
         <div>
             <h2>Reservation</h2>
-            <ul>
-                <li>par privatizer</li>
-                <li>par email</li>
-                <li>par telephone</li>
-            </ul>
-
+            <LogoLink displayed="Privateaser" address="https://www.privateaser.com/lieu/38031-fada" logo="privateaser"/>
+            <LogoLink displayed="test@gmail.com" address="mailto:test@gmail.com" logo="mail"/>
+            <LogoLink displayed="+33 6 12 34 56 78" address="telto:+33612345678" logo="phone"/>
+        </div>
+        <div>
             <h2>Où nous trouver?</h2>
-            <p>64 Rue Jean-Jacques Rousseau, 75001 Paris, France</p>
-            <i class="fas fa-heart"></i>
+            <LogoLink displayed="64 Rue Jean-Jacques Rousseau, 75001 Paris, France" address="https://maps.app.goo.gl/du8wNHpY7ujomvC36"/>
         </div>
     </div>
 </template>
@@ -37,7 +37,7 @@
 .container{
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin-bottom: 2em;
 }
 
