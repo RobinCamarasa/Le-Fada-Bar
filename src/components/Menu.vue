@@ -1,65 +1,118 @@
 <script>
-    export default {
-        data(){
-            return {
-                current_menu: 0
+export default {
+    data() {
+        return {
+            current_menu: 0,
+        }
+    },
+    methods: {
+        next() {
+            var increment = 1 + (window.innerWidth >= 1080);
+            var size = this.dashboard.menu.length;
+            console.log(increment);
+            if (this.current_menu + 2 > size) {
+                this.current_menu = 0;
+            } else {
+                this.current_menu = this.current_menu + 2;
             }
         },
-        methods: {
-            next() {
-                var size = this.dashboard.menu.length;
-                this.current_menu = (this.current_menu + 1) % size;
-            },
-            previous() {
-                var size = this.dashboard.menu.length;
-                this.current_menu = (this.current_menu + size - 1) % size;
+        previous() {
+            var increment = 1 + (window.innerWidth >= 1080);
+            var size = this.dashboard.menu.length;
+            console.log(increment);
+            if (this.current_menu == 0 && size % 2 == 1) {
+                this.current_menu = size - 1;
+            }
+            else if (this.current_menu == 0 && size % 2 == 0) {
+                this.current_menu = size - 2;
+            }
+            else {
+                this.current_menu = this.current_menu - 2;
             }
         },
-        props: ['dashboard']
-    }
+    },
+    props: ['dashboard']
+}
 </script>
 
 <template>
     <hr>
     <div class="container" v-if="dashboard">
-        <div><a @click="previous">&lt;</a></div>
-        <div>
+        <h2>
+            <a class="main" @click="previous">&lt;</a>
+            Menu
+            <a class="main" @click="next">&gt;</a>
+        </h2>
+        <div class="menu">
             <div>
-                <h2>{{ dashboard.menu[current_menu].category }}</h2>
+                <h3>
+                    {{ dashboard.menu[current_menu].category }}
+                </h3>
                 <table>
                     <thead>
-                        <th v-for="head in dashboard.menu[current_menu].header">
+                        <th v-for="head in dashboard.menu[current_menu].header" align="left">
                             {{ head }}
                         </th>
                     </thead>
-                    <tr v-for="line in dashboard.menu[current_menu].content">
-                        <td v-for="cell in line">
-                            <div v-if="cell == ''">/</div>
-                            <div v-else>{{ cell }}</div>
-                        </td>
-                    </tr>
+                    <tbody>
+                        <tr v-for="line in dashboard.menu[current_menu].content">
+                            <td v-for="cell in line">
+                                <div v-if="cell == ''">&nbsp;</div>
+                                <div v-else>{{ cell }}</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div v-if="(current_menu + 1 < dashboard.menu.length)">
+                <h3>
+                    {{ dashboard.menu[current_menu + 1].category }}
+                </h3>
+                <table>
+                    <thead>
+                        <th v-for="head in dashboard.menu[current_menu + 1].header" align="left">
+                            {{ head }}
+                        </th>
+                    </thead>
+                    <tbody>
+                        <tr v-for="line in dashboard.menu[current_menu + 1].content">
+                            <td v-for="cell in line">
+                                <div v-if="cell == ''">&nbsp;</div>
+                                <div v-else>{{ cell }}</div>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         </div>
-        <div><a @click="next">&gt;</a></div>
     </div>
 </template>
 
 <style scoped>
-
-.container{
+.container {
+    user-select: none;
     width: 100%;
     margin-bottom: 2em;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-a { cursor: pointer; }
-
-td,th {
+a {
+    cursor: pointer;
     padding-left: 1em;
+    padding-right: 1em;
 }
 
+.menu {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.menu>div {
+    width: 45%;
+}
 </style>
