@@ -31,7 +31,7 @@ export default {
     },
     mounted() {
         axios
-            .get('https://script.google.com/macros/s/AKfycbzM-wzxcZtiS3wEQeZY2KpnOwYpg0nFm8IDCiEWGGN7u-7n6g2tYAtydaCsZloy_UHB/exec')
+            .get('https://script.google.com/macros/s/AKfycbxB3e_qnpiX-zPrOqpMGni48hzPO58B7LCmJnjfiIt9oJ4G2orjTnKOvrvF7Wv_8T4h/exec')
             .then(
                 response => {
                     this.dashboard = response["data"]
@@ -88,9 +88,15 @@ export default {
 }
 
 .body {
-    padding-top: 8em;
+    padding-top: 4em;
     margin-left: 1em;
     margin-right: 1em;
+}
+
+@media (min-width: 450px) {
+    .body {
+        padding-top: 8em;
+    }
 }
 
 @media (min-width: 990px) {

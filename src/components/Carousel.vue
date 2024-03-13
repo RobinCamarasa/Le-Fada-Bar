@@ -21,7 +21,8 @@ export default {
 
 <template>
     <div class="container" width="100%" v-if="dashboard">
-        <img class="frame" :src="dashboard.events[current_menu].image + '&sz=w1500'">
+        <img referrerpolicy="no-referrer" class="frame"
+            :src="dashboard.events[current_menu].image + '?s=1500?authuser=0'">
         <h3 width="100px">
             <a class="main" @click="previous">&lt;</a>
             <span style="display: inline-block" width="1000px">

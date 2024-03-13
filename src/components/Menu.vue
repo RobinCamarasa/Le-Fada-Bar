@@ -3,33 +3,42 @@ export default {
     data() {
         return {
             current_menu: 0,
+            is_shown: false
         }
     },
     methods: {
         next() {
-            var increment = 1 + (window.innerWidth >= 1080);
+            var increment = 1 + this.is_shown;
             var size = this.dashboard.menu.length;
-            console.log(increment);
-            if (this.current_menu + 2 > size) {
+            if (this.current_menu + increment >= size) {
                 this.current_menu = 0;
             } else {
-                this.current_menu = this.current_menu + 2;
+                this.current_menu = this.current_menu + increment;
             }
         },
         previous() {
-            var increment = 1 + (window.innerWidth >= 1080);
+            var increment = 1 + this.is_shown;
             var size = this.dashboard.menu.length;
-            console.log(increment);
             if (this.current_menu == 0 && size % 2 == 1) {
                 this.current_menu = size - 1;
             }
             else if (this.current_menu == 0 && size % 2 == 0) {
-                this.current_menu = size - 2;
+                this.current_menu = size - increment;
             }
             else {
-                this.current_menu = this.current_menu - 2;
+                this.current_menu = this.current_menu - increment;
             }
         },
+        hide() {
+            this.is_shown = window.innerWidth >= 990;
+        }
+    },
+    mounted() {
+        this.hide()
+        window.addEventListener('resize', this.hide);
+    },
+    unmounted() {
+        window.removeEventListener('resize', this.hide);
     },
     props: ['dashboard']
 }
@@ -64,19 +73,20 @@ export default {
                     </tbody>
                 </table>
             </div>
-            <div v-if="(current_menu + 1 < dashboard.menu.length)">
+            <div v-if="(current_menu + 1 < dashboard.menu.length) && is_shown">
+                <!-- <div v-if="is_shown"> -->
                 <h3>
                     {{ dashboard.menu[current_menu + 1].category }}
                 </h3>
                 <table>
                     <thead>
-                        <th v-for="head in dashboard.menu[current_menu + 1].header" align="left">
+                        <th v-for="   head    in    dashboard.menu[current_menu + 1].header   " align="left">
                             {{ head }}
                         </th>
                     </thead>
                     <tbody>
-                        <tr v-for="line in dashboard.menu[current_menu + 1].content">
-                            <td v-for="cell in line">
+                        <tr v-for="      line       in       dashboard.menu[current_menu + 1].content      ">
+                            <td v-for="      cell       in       line      ">
                                 <div v-if="cell == ''">&nbsp;</div>
                                 <div v-else>{{ cell }}</div>
                             </td>
@@ -113,6 +123,13 @@ a {
 }
 
 .menu>div {
-    width: 45%;
+    width: 100%;
+}
+
+@media (min-width: 990px) {
+    .menu>div {
+        width: 45%;
+    }
+
 }
 </style>

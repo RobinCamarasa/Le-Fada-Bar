@@ -4,8 +4,23 @@
 #app {
 }
 
+
 h1 {
-    font-size: 8em;
+    font-size: 3em;
+}
+
+nav{
+    height: 5em;
+}
+
+@media (min-width: 450px) {
+    h1 {
+        font-size: 7em;
+    }
+
+    nav{
+        height: 8em;
+    }
 }
 
 hr {
