@@ -2,7 +2,7 @@ name: Build image, Push to Artifact registry & Deploy to Cloud Run
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "cloud" ]
 
 env:
   PROJECT_ID: beaming-answer-416816 # TODO: update Google Cloud project id
